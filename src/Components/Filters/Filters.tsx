@@ -59,6 +59,7 @@ const Filters = () => {
     setSelectedSpeciesLocal([...selectedSpeciesLocal, selectedSpecies]);
     selectedSpeciesVar([...selectedSpeciesVar(), selectedSpecies]);
   };
+
   const handleRemoveGender = (gender: string) => {
     const updatedGenders = selectedGendersLocal.filter((g) => g !== gender);
     setSelectedGendersLocal(updatedGenders);
@@ -75,6 +76,15 @@ const Filters = () => {
     const updatedSpecies = selectedSpeciesLocal.filter((s) => s !== species);
     setSelectedSpeciesLocal(updatedSpecies);
     selectedSpeciesVar(updatedSpecies);
+  };
+
+  const handleClearFilters = () => {
+    setSelectedGendersLocal([]);
+    setSelectedStatusesLocal([]);
+    setSelectedSpeciesLocal([]);
+    selectedGendersVar([]);
+    selectedStatusesVar([]);
+    selectedSpeciesVar([]);
   };
 
   return (
@@ -127,6 +137,7 @@ const Filters = () => {
           </div>
         ))}
       </div>
+      <button onClick={handleClearFilters}>Clear Filters</button>
     </FiltersMainDiv>
   );
 };
