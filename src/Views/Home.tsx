@@ -4,6 +4,7 @@ import { HomeMainDiv } from "./HomeStyle";
 import { useEffect } from "react";
 import Cards from "../Components/Cards/Cards";
 import NavBar from "../Components/NavBar/NavBar";
+import Filters from "../Components/Filters/Filters";
 
 function Home() {
   const numberOfPagesToFetch = 42;
@@ -15,6 +16,7 @@ function Home() {
   return (
     <HomeMainDiv>
       <NavBar/>
+      <Filters />
       <Cards />
     </HomeMainDiv>
   );
