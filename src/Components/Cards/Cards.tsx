@@ -64,15 +64,22 @@ function Cards() {
 
   return (
     <CardsMainDiv>
-      <div className="Cards">
-        {charactersToDisplay.map((character: Character) => (
-          <AnimatePresence>
-            <motion.div key={character.id}>
+      <AnimatePresence>
+        <div className="Cards">
+          {charactersToDisplay.map((character: Character) => (
+            <motion.div
+              layout
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              key={character.id}
+            >
               <Card {...character} />
             </motion.div>
-          </AnimatePresence>
-        ))}
-      </div>
+          ))}
+        </div>
+      </AnimatePresence>
 
       <Pagination
         currentPage={currentPage}
