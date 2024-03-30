@@ -13,7 +13,7 @@ import {
 } from "../Filters/Filters";
 import { motion, AnimatePresence } from "framer-motion";
 
-function Cards() {
+function Cards({ modalOpen, setModalOpen, setCardClicked }) {
   const charactersData = useReactiveVar<Character[]>(charactersInfo);
   const searchCharactersData = useReactiveVar<Character[]>(searchResultsInfo);
   const selectedGenders = useReactiveVar<string[]>(selectedGendersVar);
@@ -62,6 +62,9 @@ function Cards() {
     setCurrentPage(1);
   }, [searchCharactersData.length]);
 
+  const changeCardClicked = (character) => {
+    setCardClicked(character.id);
+  };
   return (
     <CardsMainDiv>
       <AnimatePresence>
@@ -74,6 +77,11 @@ function Cards() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
               key={character.id}
+              whileTap={{ scale: 0.7 }}
+              onClick={() => {
+                setModalOpen(!modalOpen);
+                changeCardClicked(character);
+              }}
             >
               <Card {...character} />
             </motion.div>
