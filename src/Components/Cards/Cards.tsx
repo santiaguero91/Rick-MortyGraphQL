@@ -11,6 +11,7 @@ import {
   selectedSpeciesVar,
   selectedStatusesVar,
 } from "../Filters/Filters";
+import { motion, AnimatePresence } from "framer-motion";
 
 function Cards() {
   const charactersData = useReactiveVar<Character[]>(charactersInfo);
@@ -26,24 +27,18 @@ function Cards() {
     searchCharactersData.length > 0 ? searchCharactersData : charactersData;
 
   let charactersToDisplay = dataset;
-
-  // Filter characters based on selected genders
   if (selectedGenders.length > 0) {
-    charactersToDisplay = charactersToDisplay.filter(character =>
+    charactersToDisplay = charactersToDisplay.filter((character) =>
       selectedGenders.includes(character.gender)
     );
   }
-
-  // Filter characters based on selected statuses
   if (selectedStatuses.length > 0) {
-    charactersToDisplay = charactersToDisplay.filter(character =>
+    charactersToDisplay = charactersToDisplay.filter((character) =>
       selectedStatuses.includes(character.status)
     );
   }
-
-  // Filter characters based on selected species
   if (selectedSpecies.length > 0) {
-    charactersToDisplay = charactersToDisplay.filter(character =>
+    charactersToDisplay = charactersToDisplay.filter((character) =>
       selectedSpecies.includes(character.species)
     );
   }
@@ -71,9 +66,11 @@ function Cards() {
     <CardsMainDiv>
       <div className="Cards">
         {charactersToDisplay.map((character: Character) => (
-          <div key={character.id}>
-            <Card {...character} />
-          </div>
+          <AnimatePresence>
+            <motion.div key={character.id}>
+              <Card {...character} />
+            </motion.div>
+          </AnimatePresence>
         ))}
       </div>
 
@@ -87,4 +84,3 @@ function Cards() {
 }
 
 export default Cards;
-

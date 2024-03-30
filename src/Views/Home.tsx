@@ -15,7 +15,7 @@ function Home() {
 
   return (
     <HomeMainDiv>
-      <NavBar/>
+      <NavBar />
       <Filters />
       <Cards />
     </HomeMainDiv>

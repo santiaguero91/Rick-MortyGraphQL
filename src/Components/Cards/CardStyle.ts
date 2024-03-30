@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import { Box } from "@mui/material";
+import { motion } from "framer-motion";
 import { Colors } from "../../assets/Colors";
 
-export const CardMainDiv = styled(Box)`
+export const CardMainDiv = styled(motion.div)`
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -11,7 +11,7 @@ export const CardMainDiv = styled(Box)`
   align-items: center;
   border-radius: 25px;
   margin: 0.5% 0;
-  background-color: transparent;
+  background-color: ${Colors}; 
   overflow: hidden; 
   transition: transform 0.5s; 
 
