@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import Backdrop from "../Backdrop/Backdrop";
 import { useReactiveVar } from "@apollo/client";
 import { Character } from "../../Intefaces/Interfaces";
@@ -26,7 +26,13 @@ const dropIn = {
   },
 };
 
-const Modal = ({ modalOpen, setModalOpen, cardClicked }) => {
+interface ModalProps {
+  modalOpen: boolean;
+  setModalOpen: (open: boolean) => void;
+  cardClicked: number;
+}
+
+const Modal = ({ modalOpen, setModalOpen, cardClicked }: ModalProps) => {
   const charactersData = useReactiveVar<Character[]>(charactersInfo);
   const characterDetail = charactersData[cardClicked - 1];
   return (

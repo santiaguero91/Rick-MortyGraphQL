@@ -14,7 +14,7 @@ function Home() {
   const charactersData = useReactiveVar<Character[]>(charactersInfo);
   const numberOfPagesToFetch = 42;
   const [modalOpen, setModalOpen] = useState(false);
-  const [cardClicked, setCardClicked] = useState("1");
+  const [cardClicked, setCardClicked] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {

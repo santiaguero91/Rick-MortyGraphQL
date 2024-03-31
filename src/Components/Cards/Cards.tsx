@@ -18,7 +18,7 @@ interface CardsProps {
   setCurrentPage: (pageNumber: number) => void;
   modalOpen: boolean;
   setModalOpen: (open: boolean) => void;
-  setCardClicked: (id: string) => void;
+  setCardClicked: (id: number) => void;
 }
 
 function Cards({
@@ -76,8 +76,9 @@ function Cards({
   }, [searchCharactersData.length]);
 
   const changeCardClicked = (character: Character) => {
-    setCardClicked(character.id);
+    setCardClicked(Number(character.id));
   };
+
   return (
     <CardsMainDiv>
       <AnimatePresence>
