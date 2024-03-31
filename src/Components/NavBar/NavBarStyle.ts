@@ -17,4 +17,7 @@ export const NavBarMainDiv = styled(Box)`
   }
   .searchButton {
   }
+  @media (max-width: 1000px) {
+    width: 75%;
+  }
 `;

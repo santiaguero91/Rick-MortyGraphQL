@@ -7,7 +7,6 @@ import { makeVar } from "@apollo/client";
 import { motion } from "framer-motion";
 import { CleaFilterButton } from "../Cards/CardStyle";
 
-
 export const selectedGendersVar = makeVar<string[]>([]);
 export const selectedStatusesVar = makeVar<string[]>([]);
 export const selectedSpeciesVar = makeVar<string[]>([]);
@@ -15,7 +14,6 @@ export const selectedSpeciesVar = makeVar<string[]>([]);
 interface CardsProps {
   setCurrentPage: (pageNumber: number) => void;
 }
-
 
 const Filters = ({ setCurrentPage }: CardsProps) => {
   const searchCharactersData = useReactiveVar<Character[]>(searchResultsInfo);
@@ -30,23 +28,26 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
     []
   );
 
-  useEffect(function() {
-    const uniqueValues = (data: Character[], property: keyof Character) => {
-      const uniqueValues = new Set<string>();
-      data.forEach((character) => {
-        uniqueValues.add(String(character[property])); 
-      });
-      return Array.from(uniqueValues);
-    };
+  useEffect(
+    function () {
+      const uniqueValues = (data: Character[], property: keyof Character) => {
+        const uniqueValues = new Set<string>();
+        data.forEach((character) => {
+          uniqueValues.add(String(character[property]));
+        });
+        return Array.from(uniqueValues);
+      };
 
-    const uniqueSearchGenders = uniqueValues(searchCharactersData, "gender");
-    const uniqueSearchStatuses = uniqueValues(searchCharactersData, "status");
-    const uniqueSearchSpecies = uniqueValues(searchCharactersData, "species");
+      const uniqueSearchGenders = uniqueValues(searchCharactersData, "gender");
+      const uniqueSearchStatuses = uniqueValues(searchCharactersData, "status");
+      const uniqueSearchSpecies = uniqueValues(searchCharactersData, "species");
 
-    setUniqueGenders(uniqueSearchGenders);
-    setUniqueStatuses(uniqueSearchStatuses);
-    setUniqueSpecies(uniqueSearchSpecies);
-  }, [searchCharactersData]);
+      setUniqueGenders(uniqueSearchGenders);
+      setUniqueStatuses(uniqueSearchStatuses);
+      setUniqueSpecies(uniqueSearchSpecies);
+    },
+    [searchCharactersData]
+  );
 
   const [uniqueGenders, setUniqueGenders] = useState<string[]>([]);
   const [uniqueStatuses, setUniqueStatuses] = useState<string[]>([]);

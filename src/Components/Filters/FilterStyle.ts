@@ -22,7 +22,7 @@ export const FiltersMainDiv = styled(Box)`
     width: 50%;
   }
 
-  .genderSelectdiv {
+  .genderSelect {
   }
   .optionSelected {
     margin-top: 10px;
@@ -36,5 +36,9 @@ export const FiltersMainDiv = styled(Box)`
       cursor: pointer;
       scale: 1.5;
     }
+  }
+
+  @media (max-width: 1000px) {
+    width: 100%;
   }
 `;
