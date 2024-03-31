@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import { Box } from "@mui/material";
 
-export const NavBarMainDiv = styled(Box)`
+export const NavBarMainDiv = styled.div`
   width: 50%;
   display: flex;
   flex-direction: row;

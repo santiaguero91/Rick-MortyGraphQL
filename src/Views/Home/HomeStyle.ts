@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import { Box } from "@mui/material";
 
-export const HomeMainDiv = styled(Box)`
+export const HomeMainDiv = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -12,7 +11,7 @@ export const HomeMainDiv = styled(Box)`
   padding: 1%;
 `;
 
-export const HomeLeftDiv = styled(Box)`
+export const HomeLeftDiv = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;

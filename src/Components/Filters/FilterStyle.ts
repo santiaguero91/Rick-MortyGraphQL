@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
-import { Box } from "@mui/material";
 import { Colors } from "../../assets/Colors";
 
-export const FiltersMainDiv = styled(Box)`
+export const FiltersMainDiv = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;

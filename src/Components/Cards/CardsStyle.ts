@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import { Box } from "@mui/material";
 
-export const CardsMainDiv = styled(Box)`
+export const CardsMainDiv = styled.div`
   width: 100%;
   .Cards {
     display: grid;
