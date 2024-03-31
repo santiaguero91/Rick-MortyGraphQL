@@ -32,13 +32,23 @@ export const FiltersMainDiv = styled(Box)`
     border-radius: 16px;
     background-color: ${Colors.greenButton};
     height: 3rem;
-    .deleteDiv {
-      cursor: pointer;
-      scale: 1.5;
-    }
   }
 
   @media (max-width: 1000px) {
     width: 100%;
   }
+`;
+
+export const DeleteDiv = styled.svg`
+  cursor: pointer;
+  path {
+    stroke: white;
+    transition: stroke 0.3s;
+  }
+  /*  :hover {
+    background-color: ${Colors.greenButton};
+    path {
+      stroke: ${Colors.lightBlueText};
+    }
+  } */
 `;
