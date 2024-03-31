@@ -6,7 +6,7 @@ import { FiltersMainDiv } from "./FilterStyle";
 import { makeVar } from "@apollo/client";
 import { motion } from "framer-motion";
 import { CleaFilterButton } from "../Cards/CardStyle";
-
+import TrashIcon from "../../assets/TrashIcon";
 
 export const selectedGendersVar = makeVar<string[]>([]);
 export const selectedStatusesVar = makeVar<string[]>([]);
@@ -15,7 +15,6 @@ export const selectedSpeciesVar = makeVar<string[]>([]);
 interface CardsProps {
   setCurrentPage: (pageNumber: number) => void;
 }
-
 
 const Filters = ({ setCurrentPage }: CardsProps) => {
   const searchCharactersData = useReactiveVar<Character[]>(searchResultsInfo);
@@ -30,23 +29,26 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
     []
   );
 
-  useEffect(function() {
-    const uniqueValues = (data: Character[], property: keyof Character) => {
-      const uniqueValues = new Set<string>();
-      data.forEach((character) => {
-        uniqueValues.add(String(character[property])); 
-      });
-      return Array.from(uniqueValues);
-    };
+  useEffect(
+    function () {
+      const uniqueValues = (data: Character[], property: keyof Character) => {
+        const uniqueValues = new Set<string>();
+        data.forEach((character) => {
+          uniqueValues.add(String(character[property]));
+        });
+        return Array.from(uniqueValues);
+      };
 
-    const uniqueSearchGenders = uniqueValues(searchCharactersData, "gender");
-    const uniqueSearchStatuses = uniqueValues(searchCharactersData, "status");
-    const uniqueSearchSpecies = uniqueValues(searchCharactersData, "species");
+      const uniqueSearchGenders = uniqueValues(searchCharactersData, "gender");
+      const uniqueSearchStatuses = uniqueValues(searchCharactersData, "status");
+      const uniqueSearchSpecies = uniqueValues(searchCharactersData, "species");
 
-    setUniqueGenders(uniqueSearchGenders);
-    setUniqueStatuses(uniqueSearchStatuses);
-    setUniqueSpecies(uniqueSearchSpecies);
-  }, [searchCharactersData]);
+      setUniqueGenders(uniqueSearchGenders);
+      setUniqueStatuses(uniqueSearchStatuses);
+      setUniqueSpecies(uniqueSearchSpecies);
+    },
+    [searchCharactersData]
+  );
 
   const [uniqueGenders, setUniqueGenders] = useState<string[]>([]);
   const [uniqueStatuses, setUniqueStatuses] = useState<string[]>([]);
@@ -131,9 +133,7 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
               transition={{ duration: 0.5 }}
             >
               <h5>{s}</h5>
-              <div className="deleteDiv">
-                <h6 onClick={() => handleRemoveGender(s)}>X</h6>
-              </div>
+              <TrashIcon onClickFunction={handleRemoveGender} item={s} />
             </motion.div>
           ))}
         </div>
@@ -151,9 +151,7 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
           {selectedStatusesLocal.map((s) => (
             <div className="optionSelected" key={s}>
               <h5>{s}</h5>
-              <div className="deleteDiv">
-                <h6 onClick={() => handleRemoveStatus(s)}>X</h6>
-              </div>
+              <TrashIcon onClickFunction={handleRemoveStatus} item={s} />
             </div>
           ))}
         </div>
@@ -171,9 +169,7 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
           {selectedSpeciesLocal.map((s) => (
             <div className="optionSelected" key={s}>
               <h5>{s}</h5>
-              <div className="deleteDiv">
-                <h6 onClick={() => handleRemoveSpecies(s)}>X</h6>
-              </div>
+              <TrashIcon onClickFunction={handleRemoveSpecies} item={s} />
             </div>
           ))}
         </div>

@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
-import { Box } from "@mui/material";
 import { Colors } from "../../assets/Colors";
 
-export const FiltersMainDiv = styled(Box)`
+export const FiltersMainDiv = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -22,7 +21,7 @@ export const FiltersMainDiv = styled(Box)`
     width: 50%;
   }
 
-  .genderSelectdiv {
+  .genderSelect {
   }
   .optionSelected {
     margin-top: 10px;
@@ -32,9 +31,23 @@ export const FiltersMainDiv = styled(Box)`
     border-radius: 16px;
     background-color: ${Colors.greenButton};
     height: 3rem;
-    .deleteDiv {
-      cursor: pointer;
-      scale: 1.5;
-    }
   }
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+`;
+
+export const DeleteDiv = styled.svg`
+  cursor: pointer;
+  path {
+    stroke: white;
+    transition: stroke 0.3s;
+  }
+  /*  :hover {
+    background-color: ${Colors.greenButton};
+    path {
+      stroke: ${Colors.lightBlueText};
+    }
+  } */
 `;

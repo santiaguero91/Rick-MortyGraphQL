@@ -46,35 +46,55 @@ const Modal = ({ modalOpen, setModalOpen, cardClicked }: ModalProps) => {
           animate="visible"
           exit="exit"
         >
-          <h2 className="modalName">{characterDetail.name}</h2>
-          <div className="flexRow">
-            <div className="imageDiv">
-              <img src={characterDetail.image} />
+          <img
+            className="imageDiv"
+            src={characterDetail.image}
+            alt="Character"
+          />
+          <div className="propertiesDiv">
+            <h2 className="modalName">{characterDetail.name}</h2>
+
+            <div className="property">
+              <p className="propertyName">Specie:</p>
+              <p>{characterDetail.species}</p>
             </div>
-            <div className="propertiesDiv">
+            <div className="property">
+              <p className="propertyName">Status:</p>
+              <p>{characterDetail.status}</p>
+            </div>
+            <div className="property">
+              <p className="propertyName">Gender:</p>
+              <p>{characterDetail.gender}</p>
+            </div>
+            <div className="property">
+              <p className="propertyName">Location:</p>
+              <p>{characterDetail.location.name}</p>
+            </div>
+            <div className="property">
+              <p className="propertyName">Dimension:</p>
+              <p>{characterDetail.location.dimension}</p>
+            </div>
+            <div className="property">
+              <p className="propertyName">Origin:</p>
+              <p>{characterDetail.origin.name}</p>
+            </div>
+            {characterDetail.type && (
               <div className="property">
-                <p className="propertyName">Specie:</p>
-                <p>{characterDetail.species}</p>
+                <p className="propertyName">Type:</p>
+                <p>{characterDetail.type}</p>
               </div>
-              <div className="property">
-                <p className="propertyName">Status:</p>
-                <p>{characterDetail.status}</p>
-              </div>
-              <div className="property">
-                <p className="propertyName">Gender:</p>
-                <p>{characterDetail.gender}</p>
-              </div>
-              <div className="property">
-                <p className="propertyName">Location:</p>
-                <p>{characterDetail.location.name}</p>
-              </div>
+            )}
+
+            <div
+              className="closeButton"
+              onClick={() => setModalOpen(!modalOpen)}
+            >
+              X
             </div>
           </div>
-          <button onClick={() => setModalOpen(!modalOpen)}>Close</button>
         </ModalMainDiv>
       </AnimatePresence>
     </Backdrop>
   );
 };
-
 export default Modal;

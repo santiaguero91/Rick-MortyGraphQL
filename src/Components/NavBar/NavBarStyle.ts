@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import { Box } from "@mui/material";
 
-export const NavBarMainDiv = styled(Box)`
+export const NavBarMainDiv = styled.div`
   width: 50%;
   display: flex;
   flex-direction: row;
@@ -16,5 +15,8 @@ export const NavBarMainDiv = styled(Box)`
     padding-left: 8px;
   }
   .searchButton {
+  }
+  @media (max-width: 1000px) {
+    width: 75%;
   }
 `;

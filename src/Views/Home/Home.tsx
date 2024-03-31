@@ -1,14 +1,14 @@
-import { charactersInfo, getCharactersMultipleTimes } from "../Apollo";
-import { client } from "../Apollo/client";
+import { charactersInfo, getCharactersMultipleTimes } from "../../Apollo";
+import { client } from "../../Apollo/client";
 import { HomeMainDiv } from "./HomeStyle";
 import { useEffect, useState } from "react";
-import Cards from "../Components/Cards/Cards";
-import NavBar from "../Components/NavBar/NavBar";
-import Filters from "../Components/Filters/Filters";
-import Modal from "../Components/Modal/Modal";
+import Cards from "../../Components/Cards/Cards";
+import NavBar from "../../Components/NavBar/NavBar";
+import Filters from "../../Components/Filters/Filters";
+import Modal from "../../Components/Modal/Modal";
 import { useReactiveVar } from "@apollo/client";
-import { Character } from "../Intefaces/Interfaces";
-import LoadingComponent from "./Loading";
+import { Character } from "../../Intefaces/Interfaces";
+import LoadingComponent from "../Loading/Loading";
 
 function Home() {
   const charactersData = useReactiveVar<Character[]>(charactersInfo);
