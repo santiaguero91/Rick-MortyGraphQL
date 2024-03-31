@@ -1,11 +1,10 @@
 export interface Location {
   name: string;
+  dimension: string;
 }
 
-export interface Episode {
-  id: string;
+export interface Origin {
   name: string;
-  episode: string;
 }
 
 export interface Character {
@@ -17,5 +16,5 @@ export interface Character {
   gender: string;
   image: string;
   location: Location;
-  episode: Episode[];
+  origin: Origin;
 }

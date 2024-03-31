@@ -35,7 +35,6 @@ interface ModalProps {
 const Modal = ({ modalOpen, setModalOpen, cardClicked }: ModalProps) => {
   const charactersData = useReactiveVar<Character[]>(charactersInfo);
   const characterDetail = charactersData[cardClicked - 1];
-
   return (
     <Backdrop>
       <AnimatePresence>
@@ -71,6 +70,21 @@ const Modal = ({ modalOpen, setModalOpen, cardClicked }: ModalProps) => {
               <p className="propertyName">Location:</p>
               <p>{characterDetail.location.name}</p>
             </div>
+            <div className="property">
+              <p className="propertyName">Dimension:</p>
+              <p>{characterDetail.location.dimension}</p>
+            </div>
+            <div className="property">
+              <p className="propertyName">Origin:</p>
+              <p>{characterDetail.origin.name}</p>
+            </div>
+            {characterDetail.type && (
+              <div className="property">
+                <p className="propertyName">Type:</p>
+                <p>{characterDetail.type}</p>
+              </div>
+            )}
+
             <div
               className="closeButton"
               onClick={() => setModalOpen(!modalOpen)}

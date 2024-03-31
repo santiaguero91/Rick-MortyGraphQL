@@ -7,22 +7,21 @@ export const GET_CHARACTERS = gql`
         count
       }
       results {
-        id
+      id
+      name
+      species
+      type
+      status
+      gender
+      image
+      location {
         name
-        species
-        status
-        type
-        gender
-        image
-        location {
-          name
-        }
-        episode {
-          id
-          name
-          episode
-        }
+        dimension
       }
+      origin {
+        name
+      }
+    }
     }
   }
 `;

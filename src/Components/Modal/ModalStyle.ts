@@ -18,6 +18,10 @@ export const ModalMainDiv = styled(motion.div)`
     font-size: 20px;
     font-weight: bold;
     z-index: 999;
+    transition: all 0.5s;
+    :hover {
+      color: white;
+    }
   }
 
   .imageDiv {
