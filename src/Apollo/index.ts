@@ -24,5 +24,5 @@ export async function getCharactersMultipleTimes(
       console.error(`Error fetching characters for page ${i}:`, error);
     }
   }
-  charactersInfo(characters); // Update charactersInfo with fetched characters
+  charactersInfo(characters); 
 }

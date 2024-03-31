@@ -13,7 +13,6 @@ export const selectedSpeciesVar = makeVar<string[]>([]);
 const Filters = () => {
   const searchCharactersData = useReactiveVar<Character[]>(searchResultsInfo);
 
-  // Local state for selected options
   const [selectedGendersLocal, setSelectedGendersLocal] = useState<string[]>(
     []
   );
@@ -24,7 +23,6 @@ const Filters = () => {
     []
   );
 
-  // Function to extract unique values for a specific property
   const getUniqueValues = (data: Character[], property: keyof Character) => {
     const uniqueValues = new Set<string>();
     data.forEach((character) => {
@@ -32,14 +30,8 @@ const Filters = () => {
     });
     return Array.from(uniqueValues);
   };
-
-  // Get unique gender values
   const uniqueSearchGenders = getUniqueValues(searchCharactersData, "gender");
-
-  // Get unique status values
   const uniqueSearchStatuses = getUniqueValues(searchCharactersData, "status");
-
-  // Get unique species values
   const uniqueSearchSpecies = getUniqueValues(searchCharactersData, "species");
 
   const handleGenderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -89,6 +81,7 @@ const Filters = () => {
 
   return (
     <FiltersMainDiv>
+
       <div className="genderSelectdiv">
         <select id="genderSelect" onChange={handleGenderChange}>
           <option value="">All</option>
