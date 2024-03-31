@@ -5,6 +5,7 @@ export const Colors = {
   greyCards: "rgba(108,117,107,1)",
   purpleShadows: "rgba(65,51,122,1)",
   
+  lightBlueText: "#a2d2ff",
   greenButton: "#3D7068",
   darkGreenButton: "#14453D",
 
