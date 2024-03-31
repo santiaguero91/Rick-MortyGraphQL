@@ -13,14 +13,13 @@ import {
 } from "../Filters/Filters";
 import { motion, AnimatePresence } from "framer-motion";
 
-function Cards({ modalOpen, setModalOpen, setCardClicked }) {
+function Cards({ currentPage, setCurrentPage, modalOpen, setModalOpen, setCardClicked }) {
   const charactersData = useReactiveVar<Character[]>(charactersInfo);
   const searchCharactersData = useReactiveVar<Character[]>(searchResultsInfo);
   const selectedGenders = useReactiveVar<string[]>(selectedGendersVar);
   const selectedStatuses = useReactiveVar<string[]>(selectedStatusesVar);
   const selectedSpecies = useReactiveVar<string[]>(selectedSpeciesVar);
 
-  const [currentPage, setCurrentPage] = useState(1);
   const charactersPerPage = 20;
 
   const dataset =

@@ -24,7 +24,6 @@ const NavBar = () => {
 
   useEffect(() => {
     if (count === 0 && charactersData.length > 100) {
-      console.log(charactersData);
       searchResultsInfo(charactersData);
       setCount(count + 1);
     }

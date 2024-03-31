@@ -11,12 +11,12 @@ export const CardMainDiv = styled(motion.div)`
   align-items: center;
   border-radius: 25px;
   margin: 0.5% 0;
-  background-color: ${Colors}; 
-  overflow: hidden; 
-  transition: transform 0.5s; 
+  background-color: ${Colors};
+  overflow: hidden;
+  transition: transform 0.5s;
 
   &:hover {
-    transform: scale(1.2); 
+    transform: scale(1.2);
   }
 
   img {
@@ -34,4 +34,10 @@ export const CardMainDiv = styled(motion.div)`
     color: black;
     text-decoration: line-through;
   }
+`;
+
+export const CleaFilterButton = styled(motion.button)`
+  background-color: ${Colors.darkGreenButton};
+  border-radius: 16px;
+  margin-top: 16px;
 `;
