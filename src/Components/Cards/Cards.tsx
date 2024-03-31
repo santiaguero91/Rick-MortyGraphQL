@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useReactiveVar } from "@apollo/client";
 import Card from "./Card";
 import { CardsMainDiv } from "./CardsStyle";
@@ -13,7 +13,21 @@ import {
 } from "../Filters/Filters";
 import { motion, AnimatePresence } from "framer-motion";
 
-function Cards({ currentPage, setCurrentPage, modalOpen, setModalOpen, setCardClicked }) {
+interface CardsProps {
+  currentPage: number;
+  setCurrentPage: (pageNumber: number) => void;
+  modalOpen: boolean;
+  setModalOpen: (open: boolean) => void;
+  setCardClicked: (id: string) => void;
+}
+
+function Cards({
+  currentPage,
+  setCurrentPage,
+  modalOpen,
+  setModalOpen,
+  setCardClicked,
+}: CardsProps) {
   const charactersData = useReactiveVar<Character[]>(charactersInfo);
   const searchCharactersData = useReactiveVar<Character[]>(searchResultsInfo);
   const selectedGenders = useReactiveVar<string[]>(selectedGendersVar);
@@ -61,7 +75,7 @@ function Cards({ currentPage, setCurrentPage, modalOpen, setModalOpen, setCardCl
     setCurrentPage(1);
   }, [searchCharactersData.length]);
 
-  const changeCardClicked = (character) => {
+  const changeCardClicked = (character: Character) => {
     setCardClicked(character.id);
   };
   return (

@@ -7,12 +7,17 @@ import { makeVar } from "@apollo/client";
 import { motion } from "framer-motion";
 import { CleaFilterButton } from "../Cards/CardStyle";
 
-// Reactive variables for unique values of each select
+
 export const selectedGendersVar = makeVar<string[]>([]);
 export const selectedStatusesVar = makeVar<string[]>([]);
 export const selectedSpeciesVar = makeVar<string[]>([]);
 
-const Filters = ({ currentPage, setCurrentPage }) => {
+interface CardsProps {
+  setCurrentPage: (pageNumber: number) => void;
+}
+
+
+const Filters = ({ setCurrentPage }: CardsProps) => {
   const searchCharactersData = useReactiveVar<Character[]>(searchResultsInfo);
 
   const [selectedGendersLocal, setSelectedGendersLocal] = useState<string[]>(
@@ -25,11 +30,11 @@ const Filters = ({ currentPage, setCurrentPage }) => {
     []
   );
 
-  useEffect(() => {
+  useEffect(function() {
     const uniqueValues = (data: Character[], property: keyof Character) => {
       const uniqueValues = new Set<string>();
       data.forEach((character) => {
-        uniqueValues.add(character[property]);
+        uniqueValues.add(String(character[property])); 
       });
       return Array.from(uniqueValues);
     };

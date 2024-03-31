@@ -1,6 +1,11 @@
 import { BackdropMainDiv } from "./BackdropStyle";
+import React from "react";
 
-const Backdrop = ({ children, }) => {
+interface BackdropProps {
+  children: React.ReactNode;
+}
+
+const Backdrop: React.FC<BackdropProps> = ({ children }) => {
   return (
     <BackdropMainDiv
       className="backdrop"

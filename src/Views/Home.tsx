@@ -14,7 +14,7 @@ function Home() {
   const charactersData = useReactiveVar<Character[]>(charactersInfo);
   const numberOfPagesToFetch = 42;
   const [modalOpen, setModalOpen] = useState(false);
-  const [cardClicked, setCardClicked] = useState(false);
+  const [cardClicked, setCardClicked] = useState("1");
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ function Home() {
             />
           )}
           <NavBar />
-          <Filters currentPage={currentPage} setCurrentPage={setCurrentPage} />
+          <Filters setCurrentPage={setCurrentPage} />
           <Cards
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
