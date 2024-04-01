@@ -7,6 +7,7 @@ import { makeVar } from "@apollo/client";
 import { motion } from "framer-motion";
 import { CleaFilterButton } from "../Cards/CardStyle";
 import TrashIcon from "../../assets/TrashIcon";
+import Dropdown from "./Dropdown";
 
 export const selectedGendersVar = makeVar<string[]>([]);
 export const selectedStatusesVar = makeVar<string[]>([]);
@@ -109,11 +110,19 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
     selectedSpeciesVar([]);
   };
 
+  const handleSelectGender = (gender: string) => {
+    if (!selectedGendersLocal.includes(gender)) {
+      setSelectedGendersLocal([...selectedGendersLocal, gender]);
+      selectedGendersVar([...selectedGendersVar(), gender]);
+      setCurrentPage(1);
+    }
+  };
+
   return (
     <FiltersMainDiv>
       <div className="selectsDiv">
         <div className="genderSelectdiv">
-          <select id="genderSelect" onChange={handleGenderChange}>
+          {/* <select id="genderSelect" onChange={handleGenderChange}>
             <option disabled selected>
               Select Gender
             </option>
@@ -122,20 +131,14 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
                 {gender}
               </option>
             ))}
-          </select>
-          {selectedGendersLocal.map((s) => (
-            <motion.div
-              className="optionSelected"
-              key={s}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <h5>{s}</h5>
-              <TrashIcon onClickFunction={handleRemoveGender} item={s} />
-            </motion.div>
-          ))}
+          </select> */}
+          <Dropdown
+            options={uniqueGenders}
+            selectedItems={selectedGendersLocal}
+            handleSelectChange={handleSelectGender}
+            handleRemoveItem={handleRemoveGender}
+          />
+          
         </div>
         <div className="statusSelectdiv">
           <select id="statusSelect" onChange={handleStatusChange}>

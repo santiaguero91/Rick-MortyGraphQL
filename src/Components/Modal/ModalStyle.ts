@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Colors } from "../../assets/Colors";
 
 export const ModalMainDiv = styled(motion.div)`
-  position: relative; /* Ensure relative positioning for the container */
+  position: relative; 
   border-radius: 16px;
   box-shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
   display: flex;
