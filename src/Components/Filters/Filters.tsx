@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useReactiveVar } from "@apollo/client";
 import { Character } from "../../Intefaces/Interfaces";
 import { searchResultsInfo } from "../NavBar/NavBar";
 import { FiltersMainDiv } from "./FilterStyle";
 import { makeVar } from "@apollo/client";
-import { motion } from "framer-motion";
 import { CleaFilterButton } from "../Cards/CardStyle";
-import TrashIcon from "../../assets/TrashIcon";
+import Dropdown from "./Dropdown";
 
 export const selectedGendersVar = makeVar<string[]>([]);
 export const selectedStatusesVar = makeVar<string[]>([]);
@@ -54,17 +53,14 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
   const [uniqueStatuses, setUniqueStatuses] = useState<string[]>([]);
   const [uniqueSpecies, setUniqueSpecies] = useState<string[]>([]);
 
-  const handleGenderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedGender = event.target.value;
-    if (!selectedGendersLocal.includes(selectedGender)) {
-      setSelectedGendersLocal([...selectedGendersLocal, selectedGender]);
-      selectedGendersVar([...selectedGendersVar(), selectedGender]);
+  const handleSelectGender = (gender: string) => {
+    if (!selectedGendersLocal.includes(gender)) {
+      setSelectedGendersLocal([...selectedGendersLocal, gender]);
+      selectedGendersVar([...selectedGendersVar(), gender]);
       setCurrentPage(1);
     }
   };
-
-  const handleStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedStatus = event.target.value;
+  const handleStatusChange = (selectedStatus: string) => {
     if (!selectedStatusesLocal.includes(selectedStatus)) {
       setSelectedStatusesLocal([...selectedStatusesLocal, selectedStatus]);
       selectedStatusesVar([...selectedStatusesVar(), selectedStatus]);
@@ -72,8 +68,7 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
     }
   };
 
-  const handleSpeciesChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedSpecies = event.target.value;
+  const handleSpeciesChange = (selectedSpecies: string) => {
     if (!selectedSpeciesLocal.includes(selectedSpecies)) {
       setSelectedSpeciesLocal([...selectedSpeciesLocal, selectedSpecies]);
       selectedSpeciesVar([...selectedSpeciesVar(), selectedSpecies]);
@@ -113,65 +108,31 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
     <FiltersMainDiv>
       <div className="selectsDiv">
         <div className="genderSelectdiv">
-          <select id="genderSelect" onChange={handleGenderChange}>
-            <option disabled selected>
-              Select Gender
-            </option>
-            {uniqueGenders.map((gender) => (
-              <option key={gender} value={gender}>
-                {gender}
-              </option>
-            ))}
-          </select>
-          {selectedGendersLocal.map((s) => (
-            <motion.div
-              className="optionSelected"
-              key={s}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <h5>{s}</h5>
-              <TrashIcon onClickFunction={handleRemoveGender} item={s} />
-            </motion.div>
-          ))}
+          <Dropdown
+            text=" Select Gender"
+            options={uniqueGenders}
+            selectedItems={selectedGendersLocal}
+            handleSelectChange={handleSelectGender}
+            handleRemoveItem={handleRemoveGender}
+          />
         </div>
         <div className="statusSelectdiv">
-          <select id="statusSelect" onChange={handleStatusChange}>
-            <option disabled selected>
-              Select Status
-            </option>
-            {uniqueStatuses.map((status) => (
-              <option key={status} value={status}>
-                {status}
-              </option>
-            ))}
-          </select>
-          {selectedStatusesLocal.map((s) => (
-            <div className="optionSelected" key={s}>
-              <h5>{s}</h5>
-              <TrashIcon onClickFunction={handleRemoveStatus} item={s} />
-            </div>
-          ))}
+          <Dropdown
+            text=" Select Status"
+            options={uniqueStatuses}
+            selectedItems={selectedStatusesLocal}
+            handleSelectChange={handleStatusChange}
+            handleRemoveItem={handleRemoveStatus}
+          />
         </div>
         <div className="speciesSelectdiv">
-          <select id="speciesSelect" onChange={handleSpeciesChange}>
-            <option disabled selected>
-              Select Species
-            </option>
-            {uniqueSpecies.map((species) => (
-              <option key={species} value={species}>
-                {species}
-              </option>
-            ))}
-          </select>
-          {selectedSpeciesLocal.map((s) => (
-            <div className="optionSelected" key={s}>
-              <h5>{s}</h5>
-              <TrashIcon onClickFunction={handleRemoveSpecies} item={s} />
-            </div>
-          ))}
+          <Dropdown
+            text=" Select Species"
+            options={uniqueSpecies}
+            selectedItems={selectedSpeciesLocal}
+            handleSelectChange={handleSpeciesChange}
+            handleRemoveItem={handleRemoveSpecies}
+          />
         </div>
       </div>
       {(selectedGendersLocal.length !== 0 ||
