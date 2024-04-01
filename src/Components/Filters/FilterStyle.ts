@@ -5,10 +5,7 @@ export const FiltersMainDiv = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
-  select {
-    width: 100%;
-    height: 40px;
-  }
+
   .selectsDiv {
     display: flex;
     flex-direction: row;
@@ -18,10 +15,7 @@ export const FiltersMainDiv = styled.div`
   .genderSelectdiv,
   .statusSelectdiv,
   .speciesSelectdiv {
-    width: 50%;
-  }
-
-  .genderSelect {
+    width: 100%;
   }
   .optionSelected {
     margin-top: 10px;
