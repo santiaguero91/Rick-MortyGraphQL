@@ -2,13 +2,13 @@ import styled from "@emotion/styled";
 import { Colors } from "../../assets/Colors";
 
 export const FiltersMainDiv = styled.div`
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
 
   .selectsDiv {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 20px;
     margin-top: 20px;
   }
