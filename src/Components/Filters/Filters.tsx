@@ -107,33 +107,27 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
   return (
     <FiltersMainDiv>
       <div className="selectsDiv">
-        <div className="genderSelectdiv">
-          <Dropdown
-            text=" Select Gender"
-            options={uniqueGenders}
-            selectedItems={selectedGendersLocal}
-            handleSelectChange={handleSelectGender}
-            handleRemoveItem={handleRemoveGender}
-          />
-        </div>
-        <div className="statusSelectdiv">
-          <Dropdown
-            text=" Select Status"
-            options={uniqueStatuses}
-            selectedItems={selectedStatusesLocal}
-            handleSelectChange={handleStatusChange}
-            handleRemoveItem={handleRemoveStatus}
-          />
-        </div>
-        <div className="speciesSelectdiv">
-          <Dropdown
-            text=" Select Species"
-            options={uniqueSpecies}
-            selectedItems={selectedSpeciesLocal}
-            handleSelectChange={handleSpeciesChange}
-            handleRemoveItem={handleRemoveSpecies}
-          />
-        </div>
+        <Dropdown
+          text=" Select Gender"
+          options={uniqueGenders}
+          selectedItems={selectedGendersLocal}
+          handleSelectChange={handleSelectGender}
+          handleRemoveItem={handleRemoveGender}
+        />
+        <Dropdown
+          text=" Select Status"
+          options={uniqueStatuses}
+          selectedItems={selectedStatusesLocal}
+          handleSelectChange={handleStatusChange}
+          handleRemoveItem={handleRemoveStatus}
+        />
+        <Dropdown
+          text=" Select Species"
+          options={uniqueSpecies}
+          selectedItems={selectedSpeciesLocal}
+          handleSelectChange={handleSpeciesChange}
+          handleRemoveItem={handleRemoveSpecies}
+        />
       </div>
       {(selectedGendersLocal.length !== 0 ||
         selectedStatusesLocal.length !== 0 ||
