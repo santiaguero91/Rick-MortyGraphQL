@@ -6,8 +6,11 @@ export const DropdownMainDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
   .selectDiv {
-    width: 25%;
+    width: 20%;
+    max-width: 10rem;
+
   }
   .select {
     border: 1px solid white;
@@ -15,6 +18,7 @@ export const DropdownMainDiv = styled.div`
     border-radius: 8px;
     cursor: pointer;
     width: 100%;
+    max-width: 10rem;
   }
   .dropdown-menu {
     background-color: gray;
@@ -28,6 +32,7 @@ export const DropdownMainDiv = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 10rem;
   }
   .dropdown-item {
     cursor: pointer;
@@ -35,8 +40,10 @@ export const DropdownMainDiv = styled.div`
   }
 `;
 
+
 export const SelectedOptionsDiv = styled.div`
-  width: 65%;
+
+  width: 80%;
   display: flex;
   justify-content: flex-start;
   align-items: start;

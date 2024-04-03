@@ -18,15 +18,9 @@ interface CardsProps {
 const Filters = ({ setCurrentPage }: CardsProps) => {
   const searchCharactersData = useReactiveVar<Character[]>(searchResultsInfo);
 
-  const [selectedGendersLocal, setSelectedGendersLocal] = useState<string[]>(
-    []
-  );
-  const [selectedStatusesLocal, setSelectedStatusesLocal] = useState<string[]>(
-    []
-  );
-  const [selectedSpeciesLocal, setSelectedSpeciesLocal] = useState<string[]>(
-    []
-  );
+  const [selectedGendersLocal, setSelectedGendersLocal] = useState<string[]>([]);
+  const [selectedStatusesLocal, setSelectedStatusesLocal] = useState<string[]>([]);
+  const [selectedSpeciesLocal, setSelectedSpeciesLocal] = useState<string[]>([]);
 
   useEffect(
     function () {
@@ -42,11 +36,11 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
       const uniqueSearchStatuses = uniqueValues(searchCharactersData, "status");
       const uniqueSearchSpecies = uniqueValues(searchCharactersData, "species");
 
-      setUniqueGenders(uniqueSearchGenders);
-      setUniqueStatuses(uniqueSearchStatuses);
-      setUniqueSpecies(uniqueSearchSpecies);
+      setUniqueGenders(uniqueSearchGenders.filter(g => !selectedGendersLocal.includes(g)));
+      setUniqueStatuses(uniqueSearchStatuses.filter(s => !selectedStatusesLocal.includes(s)));
+      setUniqueSpecies(uniqueSearchSpecies.filter(s => !selectedSpeciesLocal.includes(s)));
     },
-    [searchCharactersData]
+    [searchCharactersData, selectedGendersLocal, selectedStatusesLocal, selectedSpeciesLocal]
   );
 
   const [uniqueGenders, setUniqueGenders] = useState<string[]>([]);
@@ -56,14 +50,13 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
   const handleSelectGender = (gender: string) => {
     if (!selectedGendersLocal.includes(gender)) {
       setSelectedGendersLocal([...selectedGendersLocal, gender]);
-      selectedGendersVar([...selectedGendersVar(), gender]);
       setCurrentPage(1);
     }
   };
+
   const handleStatusChange = (selectedStatus: string) => {
     if (!selectedStatusesLocal.includes(selectedStatus)) {
       setSelectedStatusesLocal([...selectedStatusesLocal, selectedStatus]);
-      selectedStatusesVar([...selectedStatusesVar(), selectedStatus]);
       setCurrentPage(1);
     }
   };
@@ -71,7 +64,6 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
   const handleSpeciesChange = (selectedSpecies: string) => {
     if (!selectedSpeciesLocal.includes(selectedSpecies)) {
       setSelectedSpeciesLocal([...selectedSpeciesLocal, selectedSpecies]);
-      selectedSpeciesVar([...selectedSpeciesVar(), selectedSpecies]);
       setCurrentPage(1);
     }
   };
@@ -79,29 +71,25 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
   const handleRemoveGender = (gender: string) => {
     const updatedGenders = selectedGendersLocal.filter((g) => g !== gender);
     setSelectedGendersLocal(updatedGenders);
-    selectedGendersVar(updatedGenders);
     setCurrentPage(1);
   };
 
   const handleRemoveStatus = (status: string) => {
     const updatedStatuses = selectedStatusesLocal.filter((s) => s !== status);
     setSelectedStatusesLocal(updatedStatuses);
-    selectedStatusesVar(updatedStatuses);
+    setCurrentPage(1);
   };
 
   const handleRemoveSpecies = (species: string) => {
     const updatedSpecies = selectedSpeciesLocal.filter((s) => s !== species);
     setSelectedSpeciesLocal(updatedSpecies);
-    selectedSpeciesVar(updatedSpecies);
+    setCurrentPage(1);
   };
 
   const handleClearFilters = () => {
     setSelectedGendersLocal([]);
     setSelectedStatusesLocal([]);
     setSelectedSpeciesLocal([]);
-    selectedGendersVar([]);
-    selectedStatusesVar([]);
-    selectedSpeciesVar([]);
   };
 
   return (
