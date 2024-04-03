@@ -10,6 +10,7 @@ export const HomeMainDiv = styled(motion.div)`
   align-items: center;
   border-radius: 25px;
   padding: 1%;
+  max-width: 1600px;
 `;
 
 export const MainDiv = styled(motion.div)`
