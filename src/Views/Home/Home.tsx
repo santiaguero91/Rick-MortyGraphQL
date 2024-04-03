@@ -1,6 +1,6 @@
 import { charactersInfo, getCharactersMultipleTimes } from "../../Apollo";
 import { client } from "../../Apollo/client";
-import { HomeMainDiv } from "./HomeStyle";
+import { HomeMainDiv, MainDiv } from "./HomeStyle";
 import { useEffect, useState } from "react";
 import Cards from "../../Components/Cards/Cards";
 import NavBar from "../../Components/NavBar/NavBar";
@@ -9,6 +9,7 @@ import Modal from "../../Components/Modal/Modal";
 import { useReactiveVar } from "@apollo/client";
 import { Character } from "../../Intefaces/Interfaces";
 import LoadingComponent from "../Loading/Loading";
+import { motion } from "framer-motion";
 
 function Home() {
   const charactersData = useReactiveVar<Character[]>(charactersInfo);
@@ -24,28 +25,38 @@ function Home() {
   return (
     <HomeMainDiv>
       {charactersData.length !== 0 ? (
-        <>
-          {modalOpen && (
-            <Modal
+          <MainDiv
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {modalOpen && (
+              <Modal
+                modalOpen={modalOpen}
+                setModalOpen={setModalOpen}
+                cardClicked={cardClicked}
+              />
+            )}
+            <NavBar />
+            <Filters setCurrentPage={setCurrentPage} />
+            <Cards
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
               modalOpen={modalOpen}
               setModalOpen={setModalOpen}
-              cardClicked={cardClicked}
+              setCardClicked={setCardClicked}
             />
-          )}
-          <NavBar />
-          <Filters setCurrentPage={setCurrentPage} />
-          <Cards
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            modalOpen={modalOpen}
-            setModalOpen={setModalOpen}
-            setCardClicked={setCardClicked}
-          />
-        </>
+          </MainDiv>
       ) : (
-        <div>
-          <LoadingComponent />
-        </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <LoadingComponent />
+          </motion.div>
       )}
     </HomeMainDiv>
   );

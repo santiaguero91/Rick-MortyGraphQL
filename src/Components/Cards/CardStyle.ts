@@ -37,7 +37,8 @@ export const CardMainDiv = styled(motion.div)`
 `;
 
 export const CleaFilterButton = styled(motion.button)`
-  background-color: ${Colors.darkGreenButton};
+  background-color: ${Colors.greenButton};
   border-radius: 16px;
   margin-top: 16px;
+  max-width: 200px;
 `;

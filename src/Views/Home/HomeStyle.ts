@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 
-export const HomeMainDiv = styled.div`
+export const HomeMainDiv = styled(motion.div)`
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -11,6 +12,13 @@ export const HomeMainDiv = styled.div`
   padding: 1%;
 `;
 
+export const MainDiv = styled(motion.div)`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 export const HomeLeftDiv = styled.div`
   display: flex;
   flex-direction: column;
