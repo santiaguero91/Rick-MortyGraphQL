@@ -111,12 +111,9 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
     setSelectedStatusesLocal([]);
     setSelectedSpeciesLocal([]);
   };
-  const ver = () => {
-    console.log(selectedGendersVar);
-  };
+
   return (
     <FiltersMainDiv>
-      <div onClick={() => ver()}>VER</div>
 
       <div className="selectsDiv">
         <Dropdown
