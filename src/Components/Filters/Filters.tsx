@@ -18,9 +18,15 @@ interface CardsProps {
 const Filters = ({ setCurrentPage }: CardsProps) => {
   const searchCharactersData = useReactiveVar<Character[]>(searchResultsInfo);
 
-  const [selectedGendersLocal, setSelectedGendersLocal] = useState<string[]>([]);
-  const [selectedStatusesLocal, setSelectedStatusesLocal] = useState<string[]>([]);
-  const [selectedSpeciesLocal, setSelectedSpeciesLocal] = useState<string[]>([]);
+  const [selectedGendersLocal, setSelectedGendersLocal] = useState<string[]>(
+    []
+  );
+  const [selectedStatusesLocal, setSelectedStatusesLocal] = useState<string[]>(
+    []
+  );
+  const [selectedSpeciesLocal, setSelectedSpeciesLocal] = useState<string[]>(
+    []
+  );
 
   useEffect(
     function () {
@@ -36,11 +42,25 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
       const uniqueSearchStatuses = uniqueValues(searchCharactersData, "status");
       const uniqueSearchSpecies = uniqueValues(searchCharactersData, "species");
 
-      setUniqueGenders(uniqueSearchGenders.filter(g => !selectedGendersLocal.includes(g)));
-      setUniqueStatuses(uniqueSearchStatuses.filter(s => !selectedStatusesLocal.includes(s)));
-      setUniqueSpecies(uniqueSearchSpecies.filter(s => !selectedSpeciesLocal.includes(s)));
+      setUniqueGenders(
+        uniqueSearchGenders.filter((g) => !selectedGendersLocal.includes(g))
+      );
+      setUniqueStatuses(
+        uniqueSearchStatuses.filter((s) => !selectedStatusesLocal.includes(s))
+      );
+      setUniqueSpecies(
+        uniqueSearchSpecies.filter((s) => !selectedSpeciesLocal.includes(s))
+      );
+      selectedGendersVar(selectedGendersLocal);
+      selectedStatusesVar(selectedStatusesLocal);
+      selectedSpeciesVar(selectedSpeciesLocal);
     },
-    [searchCharactersData, selectedGendersLocal, selectedStatusesLocal, selectedSpeciesLocal]
+    [
+      searchCharactersData,
+      selectedGendersLocal,
+      selectedStatusesLocal,
+      selectedSpeciesLocal,
+    ]
   );
 
   const [uniqueGenders, setUniqueGenders] = useState<string[]>([]);
@@ -91,9 +111,13 @@ const Filters = ({ setCurrentPage }: CardsProps) => {
     setSelectedStatusesLocal([]);
     setSelectedSpeciesLocal([]);
   };
-
+  const ver = () => {
+    console.log(selectedGendersVar);
+  };
   return (
     <FiltersMainDiv>
+      <div onClick={() => ver()}>VER</div>
+
       <div className="selectsDiv">
         <Dropdown
           text=" Select Gender"
